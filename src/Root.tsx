@@ -1,14 +1,17 @@
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { useEffect } from 'react';
+import { LOGIN_USER } from './libraries/graphql/login';
 
 export const Root = () => {
+  // email: "test@skand.io", password: "testtest"
   // to log in, get a json web token
   // this account has been seeded to the database in advance
-  const [getToken, { data }] = useMutation(gql`
-    mutation Token {
-      token(email: "test@skand.io", password: "testtest")
+  const [getToken, { data }] = useMutation(LOGIN_USER, {
+    variables: {
+      email: 'test@skand.io',
+      password: 'testtest'
     }
-  `);
+  });
 
   useEffect(() => {
     getToken();
