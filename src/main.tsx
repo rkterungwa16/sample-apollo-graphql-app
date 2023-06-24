@@ -1,10 +1,10 @@
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Root } from './Root';
 import './libraries/server'; // This does the magic
 
 import { setContext } from '@apollo/client/link/context';
+import App from './App';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -30,7 +30,7 @@ const client = new ApolloClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <Root />
+      <App />
     </ApolloProvider>
   </React.StrictMode>
 );
