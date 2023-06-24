@@ -1,8 +1,10 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { useFormik } from 'formik';
 import { LOGIN_USER } from '../../graphql/login';
+// export const Form = () => {
 
+// }
 export const LoginForm = () => {
   const [getToken] = useMutation(LOGIN_USER);
   const navigate = useNavigate();
@@ -21,7 +23,6 @@ export const LoginForm = () => {
             password
           }
         });
-        console.log('data____', token);
         localStorage.setItem('token', token);
         navigate('/todos', { replace: true });
       } catch (e) {
@@ -47,7 +48,7 @@ export const LoginForm = () => {
         onChange={formik.handleChange}
         value={formik.values.password}
       />
-      <button type="submit">Submit</button>
+      <button type="submit" data-id="login">Submit</button>
     </form>
   );
 };

@@ -19,8 +19,10 @@ export const Root = () => {
   }, [getToken]);
 
   // simply show the token for now
-  return <>
-    {data?.token}
-    <LoginForm />
-  </>;
+  return (
+    <>
+      {data?.token}
+      <LoginForm />
+    </>
+  );
 };
