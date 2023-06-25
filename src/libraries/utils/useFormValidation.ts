@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback } from 'react';
 
 export interface StateValidatorSchemaInterface {
   [x: string]: {
@@ -31,20 +31,18 @@ export function useFormValidation(
       const errors = [];
       let error;
       if (field.isEmpty) {
-        error = !field.isEmpty.func(value) ? field.isEmpty.error : "";
+        error = !field.isEmpty.func(value) ? field.isEmpty.error : '';
         errors.push(error);
       }
 
       if (field.isEmail) {
-        error = !field.isEmail.func(value) ? field.isEmail.error : "";
+        error = !field.isEmail.func(value) ? field.isEmail.error : '';
         errors.push(error);
       }
 
       if (field.isValidPassword) {
-        error = !field.isValidPassword.func(value)
-          ? field.isValidPassword.error
-          : "";
-        errors.push(error)
+        error = !field.isValidPassword.func(value) ? field.isValidPassword.error : '';
+        errors.push(error);
       }
 
       return errors.filter((_error) => _error.length);
@@ -58,10 +56,10 @@ export function useFormValidation(
       const value = target.value;
       const name = target.name;
 
-      const error = validateFormFields(name, value);
+      const errors = validateFormFields(name, value);
 
-      setValues(prevState => ({ ...prevState, [name]: value }));
-      setErrors(prevState => ({ ...prevState, [name]: error }));
+      setValues((prevState) => ({ ...prevState, [name]: value }));
+      setErrors((prevState) => ({ ...prevState, [name]: errors }));
     },
     [validateFormFields]
   );

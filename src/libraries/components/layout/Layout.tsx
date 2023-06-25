@@ -7,8 +7,6 @@ export const StyledPageComponentsWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-left: 1rem;
-  padding-right: 1rem;
   @media only screen and ${devices.md} {
     width: 600px;
     padding: 0;
@@ -17,9 +15,11 @@ export const StyledPageComponentsWrapper = styled.div`
 
 export const StyledPageWrapper = styled.div`
   width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
 `;
+
 export type LayoutProps = {
   children: ReactNode;
 };

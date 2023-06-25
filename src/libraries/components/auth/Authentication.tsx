@@ -6,10 +6,13 @@ import {
   StyledFormButtonElementsWrapper,
   StyledFormWrapper,
   StyledFormInputElementWrapper,
-  StyledInput
+  StyledInput,
+  StyledButton,
+  StyledInputErrorMessage
 } from './styles';
 import { useFormValidation } from '../../utils/useFormValidation';
 import { validatorSchema } from '../../utils/validation-schema';
+import { FormTexts } from './constants';
 
 export const AuthenticationForm = () => {
   const { handleChange, formValues, errors } = useFormValidation(
@@ -70,27 +73,31 @@ export const AuthenticationForm = () => {
   return (
     <StyledFormWrapper>
       <StyledFormInputElementWrapper>
+        <StyledInputErrorMessage>{errors.email[0]}</StyledInputErrorMessage>
         <StyledInput
-          id="email"
-          name="email"
-          type="email"
+          id={FormTexts.EMAIL}
+          name={FormTexts.EMAIL}
+          type={FormTexts.EMAIL}
+          placeholder={FormTexts.EMAIL_PLACEHOLDER}
           onChange={handleChange}
           value={formValues.email}
         />
       </StyledFormInputElementWrapper>
       <StyledFormInputElementWrapper>
+        <StyledInputErrorMessage>{errors.password[0]}</StyledInputErrorMessage>
         <StyledInput
-          id="password"
-          name="password"
-          type="password"
+          id={FormTexts.PASSWORD}
+          name={FormTexts.PASSWORD}
+          type={FormTexts.PASSWORD}
+          placeholder={FormTexts.PASSWORD_PLACEHOLDER}
           onChange={handleChange}
           value={formValues.password}
         />
       </StyledFormInputElementWrapper>
 
       <StyledFormButtonElementsWrapper>
-        <button onClick={handleLogin}>Login</button>
-        <button onClick={handleSignup}>Sign up</button>
+        <StyledButton onClick={handleLogin}>{FormTexts.LOGIN_BUTTON}</StyledButton>
+        <StyledButton onClick={handleSignup}>{FormTexts.SIGNUP_BUTTON}</StyledButton>
       </StyledFormButtonElementsWrapper>
     </StyledFormWrapper>
   );
