@@ -1,26 +1,30 @@
-import { ChangeEventHandler, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../../graphql/signup';
 import { LOGIN_USER } from '../../graphql/login';
-import { StyledFormButtonElementsWrapper, StyledFormWrapper, StyledFormInputElementWrapper } from './styles';
+import {
+  StyledFormButtonElementsWrapper,
+  StyledFormWrapper,
+  StyledFormInputElementWrapper,
+  StyledInput
+} from './styles';
+import { useFormValidation } from '../../utils/useFormValidation';
+import { validatorSchema } from '../../utils/validation-schema';
 
 export const AuthenticationForm = () => {
-  const [userInfo, setUserInfo] = useState({
-    email: '',
-    password: ''
-  });
+  const { handleChange, formValues, errors } = useFormValidation(
+    {
+      email: '',
+      password: ''
+    },
+    validatorSchema
+  );
   const [createUser] = useMutation(SIGNUP_USER);
   const [getToken] = useMutation(LOGIN_USER);
   const navigate = useNavigate();
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const value = e.currentTarget.value;
-    const name = e.currentTarget.name;
-    setUserInfo({
-      ...userInfo,
-      [name]: value
-    });
-  };
+
+  console.log('form values___', formValues);
+  console.log('errors___', errors);
   const handleSignup = async () => {
     console.log('signup___');
     try {
@@ -28,7 +32,7 @@ export const AuthenticationForm = () => {
         data: { createUser: user }
       } = await createUser({
         variables: {
-          ...userInfo
+          ...formValues
         }
       });
 
@@ -37,7 +41,7 @@ export const AuthenticationForm = () => {
       } = await getToken({
         variables: {
           email: user.email,
-          password: userInfo.password
+          password: formValues.password
         }
       });
       localStorage.setItem('token', token);
@@ -53,7 +57,7 @@ export const AuthenticationForm = () => {
         data: { token }
       } = await getToken({
         variables: {
-          ...userInfo
+          ...formValues
         }
       });
       localStorage.setItem('token', token);
@@ -62,24 +66,25 @@ export const AuthenticationForm = () => {
       // setStatus(e);
     }
   };
+
   return (
     <StyledFormWrapper>
       <StyledFormInputElementWrapper>
-        <input
+        <StyledInput
           id="email"
           name="email"
           type="email"
           onChange={handleChange}
-          value={userInfo.email}
+          value={formValues.email}
         />
       </StyledFormInputElementWrapper>
       <StyledFormInputElementWrapper>
-        <input
+        <StyledInput
           id="password"
           name="password"
           type="password"
           onChange={handleChange}
-          value={userInfo.password}
+          value={formValues.password}
         />
       </StyledFormInputElementWrapper>
 
