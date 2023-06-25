@@ -2,6 +2,7 @@ import { useMutation } from '@apollo/client';
 import { useEffect } from 'react';
 import { LOGIN_USER } from './libraries/graphql/login';
 import { AuthenticationForm } from './libraries/components/auth/Authentication';
+import { Layout } from './libraries/components/layout/Layout';
 
 export const Root = () => {
   // email: "test@skand.io", password: "testtest"
@@ -20,9 +21,9 @@ export const Root = () => {
 
   // simply show the token for now
   return (
-    <>
+    <Layout>
       {data?.token}
       <AuthenticationForm />
-    </>
+    </Layout>
   );
 };

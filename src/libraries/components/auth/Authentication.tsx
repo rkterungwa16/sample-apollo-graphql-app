@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { SIGNUP_USER } from '../../graphql/signup';
 import { LOGIN_USER } from '../../graphql/login';
+import { StyledFormButtonElementsWrapper, StyledFormWrapper, StyledFormInputElementWrapper } from './styles';
 
 export const AuthenticationForm = () => {
   const [userInfo, setUserInfo] = useState({
@@ -62,17 +63,30 @@ export const AuthenticationForm = () => {
     }
   };
   return (
-    <>
-      <input id="email" name="email" type="email" onChange={handleChange} value={userInfo.email} />
-      <input
-        id="password"
-        name="password"
-        type="password"
-        onChange={handleChange}
-        value={userInfo.password}
-      />
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={handleSignup}>Sign up</button>
-    </>
+    <StyledFormWrapper>
+      <StyledFormInputElementWrapper>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          onChange={handleChange}
+          value={userInfo.email}
+        />
+      </StyledFormInputElementWrapper>
+      <StyledFormInputElementWrapper>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          onChange={handleChange}
+          value={userInfo.password}
+        />
+      </StyledFormInputElementWrapper>
+
+      <StyledFormButtonElementsWrapper>
+        <button onClick={handleLogin}>Login</button>
+        <button onClick={handleSignup}>Sign up</button>
+      </StyledFormButtonElementsWrapper>
+    </StyledFormWrapper>
   );
 };
