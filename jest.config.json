@@ -1,0 +1,19 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts", "tsx"],
+  "resetMocks": true,
+  "rootDir": "src",
+  "testRegex": "/.*\\.test\\.tsx?$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest",
+    "^.+\\.(jsx|tsx)$": [
+      "babel-jest",
+      {
+        "presets": ["@babel/preset-env", ["@babel/preset-react", { "runtime": "automatic" }]]
+      }
+    ]
+  },
+  "testPathIgnorePatterns": ["<rootDir>/node_modules/"],
+  "transformIgnorePatterns": ["^.+\\.module\\.(css|sass|scss)$"],
+  "coverageDirectory": "../coverage",
+  "testEnvironment": "jsdom"
+}
