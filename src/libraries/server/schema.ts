@@ -5,7 +5,7 @@ export const schema = gql`
     id: ID!
     email: String!
     passwordHashed: String!
-    createdAt: Int!
+    createdAt: String!
     todos: [Todo!]!
   }
 
@@ -18,8 +18,8 @@ export const schema = gql`
     id: ID!
     content: String!
     status: TodoStatus!
-    createdAt: Int!
-    updatedAt: Int!
+    createdAt: String!
+    updatedAt: String!
     user: User!
   }
 

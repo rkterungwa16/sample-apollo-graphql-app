@@ -29,13 +29,14 @@ export const server = createServer({
         },
         Mutation: {
           createUser(obj: any, args: any, context: any, info: any) {
+            console.log('args___', args);
             const { email, password } = args;
             const oldUser = context.mirageSchema.users.findBy({ email });
             if (oldUser) {
               throw new GraphQLError('email exists');
             }
             const passwordHashed = bcrypt.hashSync(password, 8);
-            const now = dayjs().valueOf();
+            const now = dayjs().toISOString();
             const user = context.mirageSchema.create('User', {
               email,
               passwordHashed,
@@ -47,7 +48,7 @@ export const server = createServer({
           async createTodo(obj: any, args: any, context: any, info: any) {
             const { content } = args;
             const user = await getCurrentUser(context);
-            const now = dayjs().valueOf();
+            const now = dayjs().toISOString();
             const todo = context.mirageSchema.create('Todo', {
               content,
               user,
