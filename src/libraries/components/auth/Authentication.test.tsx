@@ -54,6 +54,22 @@ describe('AuthenticationForm', () => {
     expect(invalidEmailText.textContent).toEqual(ValidationErrorTexts.INVALID_EMAIL);
   });
 
+  it('renders text for empty email', () => {
+    const { getByPlaceholderText, getByText } = render(
+      <MockedProvider>
+        <MemoryRouter>
+          <AuthenticationForm />
+        </MemoryRouter>
+      </MockedProvider>
+    );
+    const email = getByPlaceholderText(FormTexts.EMAIL_PLACEHOLDER);
+    fireEvent.input(email, { target: { value: 'terun' } });
+    fireEvent.input(email, { target: { value: '' } });
+    const emptyEmailText = getByText(ValidationErrorTexts.EMAIL_IS_EMPTY);
+    expect(emptyEmailText).toBeInTheDocument();
+    expect(emptyEmailText.textContent).toEqual(ValidationErrorTexts.EMAIL_IS_EMPTY);
+  });
+
   it('renders text for invalid password', () => {
     const { getByPlaceholderText, getByText } = render(
       <MockedProvider>
@@ -68,5 +84,21 @@ describe('AuthenticationForm', () => {
     const invalidPasswordText = getByText(ValidationErrorTexts.INVALID_PASSWORD);
     expect(invalidPasswordText).toBeInTheDocument();
     expect(invalidPasswordText.textContent).toEqual(ValidationErrorTexts.INVALID_PASSWORD);
+  });
+  it('renders text for empty password', () => {
+    const { getByPlaceholderText, getByText } = render(
+      <MockedProvider>
+        <MemoryRouter>
+          <AuthenticationForm />
+        </MemoryRouter>
+      </MockedProvider>
+    );
+
+    const password = getByPlaceholderText(FormTexts.PASSWORD_PLACEHOLDER);
+    fireEvent.input(password, { target: { value: 't' } });
+    fireEvent.input(password, { target: { value: '' } });
+    const emptyPasswordText = getByText(ValidationErrorTexts.PASSWORD_EMPTY);
+    expect(emptyPasswordText).toBeInTheDocument();
+    expect(emptyPasswordText.textContent).toEqual(ValidationErrorTexts.PASSWORD_EMPTY);
   });
 });

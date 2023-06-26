@@ -26,10 +26,7 @@ export const AuthenticationForm = () => {
   const [getToken] = useMutation(LOGIN_USER);
   const navigate = useNavigate();
 
-  console.log('form values___', formValues);
-  console.log('errors___', errors);
   const handleSignup = async () => {
-    console.log('signup___');
     try {
       const {
         data: { createUser: user }
