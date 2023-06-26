@@ -51,6 +51,7 @@ export const AuthenticationForm = () => {
       // setStatus(e);
     }
   };
+
   const handleLogin = async () => {
     try {
       const {
@@ -60,6 +61,7 @@ export const AuthenticationForm = () => {
           ...formValues
         }
       });
+
       localStorage.setItem('token', token);
       navigate('/todos', { replace: true });
     } catch (e) {
@@ -70,7 +72,7 @@ export const AuthenticationForm = () => {
   return (
     <StyledFormWrapper>
       <StyledFormInputElementWrapper>
-        <StyledInputErrorMessage>{errors.email[0]}</StyledInputErrorMessage>
+        {errors.email[0] && <StyledInputErrorMessage>{errors.email[0]}</StyledInputErrorMessage>}
         <StyledInput
           id={FormTexts.EMAIL}
           name={FormTexts.EMAIL}
@@ -81,7 +83,7 @@ export const AuthenticationForm = () => {
         />
       </StyledFormInputElementWrapper>
       <StyledFormInputElementWrapper>
-        <StyledInputErrorMessage>{errors.password[0]}</StyledInputErrorMessage>
+        {errors.password[0] && <StyledInputErrorMessage>{}</StyledInputErrorMessage>}
         <StyledInput
           id={FormTexts.PASSWORD}
           name={FormTexts.PASSWORD}

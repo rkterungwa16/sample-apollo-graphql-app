@@ -5,6 +5,7 @@ body {
   width: 100%;
   height: 100vh;
   background: #dcd6d8;
+  font-family: Helvetica Neue;
 }
 
 input::placeholder {

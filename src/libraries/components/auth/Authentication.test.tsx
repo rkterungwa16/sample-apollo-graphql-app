@@ -4,22 +4,47 @@
 
 import '@testing-library/jest-dom/extend-expect';
 import { fireEvent, render } from '@testing-library/react';
-
+import * as client from '@apollo/client';
 import { AuthenticationForm } from './Authentication';
 import { MockedProvider } from '@apollo/client/testing';
 import { MemoryRouter } from 'react-router-dom';
 import { FormTexts } from './constants';
 import { ValidationErrorTexts } from '../../utils/validation-schema';
+import { LOGIN_USER } from '../../graphql/login';
 
-const appolloClientMock = jest.mock('@apollo/client', () => {
-  const original = jest.requireActual('@apollo/client');
-  return jest.fn(() => ({
-    ...original,
-    useMutation: [jest.fn()],
-    gql: jest.fn()
-  }));
-});
+const mocks = [
+  {
+    request: {
+      query: LOGIN_USER,
+      variables: {
+        email: 'terungwakombol@gmail.com',
+        password: 'password12345'
+      }
+    },
+    result: {
+      data: {
+        token: 'token__12345'
+      }
+    }
+  }
+];
 
+// const appolloClientMock = jest.mock('@apollo/client', () => {
+//   const original = jest.requireActual('@apollo/client');
+//   return jest.fn(() => ({
+//     ...original,
+//     useMutation: [jest.fn().mockImplementation((values) => { return {
+//       data: {
+//         token: "token__12345"
+//       }
+//     }})],
+//     gql: jest.fn()
+//   }));
+// });
+
+// appolloClientMock.genMockFromModule('@apollo/client');
+
+// const mockedLocalStorageSetItem = jest.spyOn(window.localStorage, 'setItem');
 describe('AuthenticationForm', () => {
   it('exists', () => {
     expect(AuthenticationForm).toBeDefined();
@@ -100,5 +125,26 @@ describe('AuthenticationForm', () => {
     const emptyPasswordText = getByText(ValidationErrorTexts.PASSWORD_EMPTY);
     expect(emptyPasswordText).toBeInTheDocument();
     expect(emptyPasswordText.textContent).toEqual(ValidationErrorTexts.PASSWORD_EMPTY);
+  });
+
+  it('login user', () => {
+    const { getByRole, getByPlaceholderText } = render(
+      <MockedProvider mocks={mocks}>
+        <MemoryRouter>
+          <AuthenticationForm />
+        </MemoryRouter>
+      </MockedProvider>
+    );
+
+    const loginButton = getByRole('button', { name: FormTexts.LOGIN_BUTTON });
+    const email = getByPlaceholderText(FormTexts.EMAIL_PLACEHOLDER);
+    fireEvent.input(email, { target: { value: 'terungwakombol@gmail.com' } });
+    const password = getByPlaceholderText(FormTexts.PASSWORD_PLACEHOLDER);
+    fireEvent.input(password, { target: { value: 'password12345' } });
+    fireEvent.click(loginButton);
+    // console.log('mockedUseMutation', mockedUseMutation.mock.calls[0][0]);
+    // console.log('mockedUseMutation', mockedUseMutation.mock.calls[1][0]);
+    // console.log('localStorage__', mockedLocalStorageSetItem.mock)
+    // expect(mockedUseMutation).toBeCalled();
   });
 });

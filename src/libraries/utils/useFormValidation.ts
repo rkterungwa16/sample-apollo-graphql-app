@@ -32,7 +32,6 @@ export function useFormValidation(
       let error;
 
       if (field.isEmpty) {
-
         error = !field.isEmpty.func(value) ? field.isEmpty.error : '';
         errors.push(error);
       }

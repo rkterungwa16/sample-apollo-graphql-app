@@ -29,7 +29,6 @@ export const server = createServer({
         },
         Mutation: {
           createUser(obj: any, args: any, context: any, info: any) {
-            console.log('args___', args);
             const { email, password } = args;
             const oldUser = context.mirageSchema.users.findBy({ email });
             if (oldUser) {

@@ -1,5 +1,12 @@
+
+import { Layout } from '../libraries/components/layout/Layout';
+
 export const Todo = () => {
-  return <></>;
+  return (
+    <Layout>
+      <></>
+    </Layout>
+  );
 };
 
 export default Todo;
