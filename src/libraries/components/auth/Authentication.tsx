@@ -7,11 +7,12 @@ import {
   StyledFormWrapper,
   StyledFormInputElementWrapper,
   StyledInput,
-  StyledButton,
+  StyledSignupButton,
+  StyledLoginButton,
   StyledInputErrorMessage
 } from './styles';
 import { useFormValidation } from '../../utils/useFormValidation';
-import { validatorSchema } from '../../utils/validation-schema';
+import { authenticationFormValidatorSchema } from '../../utils/validation-schema';
 import { FormTexts } from './constants';
 
 export const AuthenticationForm = () => {
@@ -20,7 +21,7 @@ export const AuthenticationForm = () => {
       email: '',
       password: ''
     },
-    validatorSchema
+    authenticationFormValidatorSchema
   );
   const [createUser] = useMutation(SIGNUP_USER);
   const [getToken] = useMutation(LOGIN_USER);
@@ -72,7 +73,7 @@ export const AuthenticationForm = () => {
   return (
     <StyledFormWrapper>
       <StyledFormInputElementWrapper>
-        {errors.email[0] && <StyledInputErrorMessage>{errors.email[0]}</StyledInputErrorMessage>}
+        {errors.email[0]?.length && <StyledInputErrorMessage>{errors.email[0]}</StyledInputErrorMessage>}
         <StyledInput
           id={FormTexts.EMAIL}
           name={FormTexts.EMAIL}
@@ -83,7 +84,7 @@ export const AuthenticationForm = () => {
         />
       </StyledFormInputElementWrapper>
       <StyledFormInputElementWrapper>
-        {errors.password[0] && <StyledInputErrorMessage>{}</StyledInputErrorMessage>}
+        {errors.password[0]?.length && <StyledInputErrorMessage>{errors.password[0]}</StyledInputErrorMessage>}
         <StyledInput
           id={FormTexts.PASSWORD}
           name={FormTexts.PASSWORD}
@@ -95,8 +96,8 @@ export const AuthenticationForm = () => {
       </StyledFormInputElementWrapper>
 
       <StyledFormButtonElementsWrapper>
-        <StyledButton onClick={handleLogin}>{FormTexts.LOGIN_BUTTON}</StyledButton>
-        <StyledButton onClick={handleSignup}>{FormTexts.SIGNUP_BUTTON}</StyledButton>
+        <StyledLoginButton onClick={handleLogin}>{FormTexts.LOGIN_BUTTON}</StyledLoginButton>
+        <StyledSignupButton onClick={handleSignup}>{FormTexts.SIGNUP_BUTTON}</StyledSignupButton>
       </StyledFormButtonElementsWrapper>
     </StyledFormWrapper>
   );

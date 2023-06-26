@@ -18,6 +18,7 @@ export const StyledFormButtonElementsWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 `;
@@ -45,19 +46,19 @@ export const StyledInput = styled.input`
 const buttonStyles = `
   padding: 0.8rem;
   border-radius: 0.8rem;
-  margin: 0.25rem;
+  margin-left: 0.5rem;
   cursor: pointer;
   height: 48px;
   border: none;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 `
-export const StyledSignupButton = styled.button`
+export const StyledCreateTodoButton = styled.button`
   ${buttonStyles}
   background: #df2060;
   color: #F3F1F2;
 `;
 
-export const StyledLoginButton = styled.button`
+export const StyledSearchButton = styled.button`
   ${buttonStyles}
   background: #F3F1F2;
   color: #0E0C0C;
@@ -68,3 +69,4 @@ export const StyledInputErrorMessage = styled.p`
   color: #a01845;
   margin-bottom: 0.25rem;
 `;
+
