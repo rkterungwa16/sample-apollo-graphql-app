@@ -15,6 +15,7 @@ export const FETCH_USER_TODOS = gql`
 export const CREATE_TODO = gql`
   mutation CreateTodo($content: String!) {
     createTodo(content: $content) {
+      id
       content
       user {
         email

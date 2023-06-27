@@ -8,5 +8,8 @@ export enum FormTexts {
 }
 
 export enum TodoTexts {
-  EMPTY_TODOS_MESSAGE = 'You have no todo now. Did you just get everything done?'
+  EMPTY_TODOS_MESSAGE = 'You have no todo now. Did you just get everything done?',
+  TODO_DONE = 'Done',
+  TODO_EDIT = 'Edit',
+  TODO_REMOVE = 'Remove',
 }

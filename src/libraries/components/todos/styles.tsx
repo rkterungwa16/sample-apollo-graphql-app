@@ -89,3 +89,69 @@ export const StyledEmptyTodosText = styled.p`
   line-height: 1.1875rem;
   text-align: center;
 `;
+
+export const StyledCheckboxWrapper = styled.div`
+  border: 1px solid #DF2060;
+  color: transparent;
+  transition: 0.2s;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const StyledCheckboxMark = styled.span`
+  width: 1rem;
+  height: 1rem;
+  background-color: #DF2060;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const StyledCheckmarkIcon = styled.span`
+  content: "\2713";
+  :before, :after {
+    color: white;
+    font-size: 1rem;
+  }
+`
+
+export const StyledTodoItem = styled.li`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+`;
+export const StyledTodoItemSectionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const StyledTodoItemWrapper = styled.ul`
+  width: 100%;
+`;
+export const StyledTodoItemContent = styled.span`
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.18rem;
+  text-align: left;
+  color: #0e0c0c;
+`;
+
+export const StyledTodoItemStatus = styled.span`
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.18rem;
+  color: #86797D;
+  margin-right: 1rem;
+  cursor: pointer;
+`

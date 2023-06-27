@@ -12,3 +12,8 @@ input::placeholder {
   color: #c4bbbe;
   font-size: 1rem;
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+}
