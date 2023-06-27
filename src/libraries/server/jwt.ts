@@ -2,7 +2,7 @@ import * as jose from 'jose';
 
 const secret = new TextEncoder().encode('very very very very very long and safe secret phrase');
 
-export const sign = async (payload: any) => {
+export const sign = async (payload: jose.JWTPayload) => {
   const jwt = new jose.SignJWT(payload);
   jwt.setProtectedHeader({ alg: 'HS256' });
   return jwt.sign(secret);

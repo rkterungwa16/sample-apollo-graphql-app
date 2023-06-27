@@ -9,7 +9,7 @@ import { schema } from './schema';
 const getCurrentUser = async (context: any) => {
   const token = context.request.requestHeaders.authorization;
   if (!token) throw new GraphQLError('unauthorized');
-  const payload = await verify(token.slice(7));
+  const payload = await verify(token);
   const user = context.mirageSchema.users.findBy({ id: payload.id });
   if (!user) throw new GraphQLError('user does not exist');
   return user;

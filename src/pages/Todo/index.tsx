@@ -1,5 +1,5 @@
 import { Layout } from '../../libraries/components/layout/Layout';
-import { TodosForm } from '../../libraries/components/todos/TodosForm';
+import { Todos } from '../../libraries/components/todos/Todos';
 import { StyledTodosPageHeaderWrapper } from './styles';
 
 export const Todo = () => {
@@ -8,7 +8,7 @@ export const Todo = () => {
       <StyledTodosPageHeaderWrapper>
         <h3>My todos</h3>
       </StyledTodosPageHeaderWrapper>
-      <TodosForm />
+      <Todos />
     </Layout>
   );
 };

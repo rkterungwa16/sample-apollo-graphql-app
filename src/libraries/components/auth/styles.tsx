@@ -50,17 +50,17 @@ const buttonStyles = `
   height: 48px;
   border: none;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-`
+`;
 export const StyledSignupButton = styled.button`
   ${buttonStyles}
   background: #df2060;
-  color: #F3F1F2;
+  color: #f3f1f2;
 `;
 
 export const StyledLoginButton = styled.button`
   ${buttonStyles}
   background: #F3F1F2;
-  color: #0E0C0C;
+  color: #0e0c0c;
 `;
 
 export const StyledInputErrorMessage = styled.p`

@@ -1,6 +1,5 @@
-import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../../graphql/login';
+import { FC } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
 import {
   StyledFormButtonElementsWrapper,
   StyledFormWrapper,
@@ -12,52 +11,63 @@ import {
 import { useFormValidation } from '../../utils/useFormValidation';
 import { createTodoFormValidatorSchema } from '../../utils/validation-schema';
 import { FormTexts } from './constants';
-import { CREATE_TODO } from '../../graphql/creat-todo';
+import { Todo } from '../../../generated/graphql';
+import { CREATE_TODO, FETCH_USER_TODOS } from '../../graphql/todos';
 
-export const TodosForm = () => {
-  const { handleChange, formValues, errors } = useFormValidation(
+interface TodosFormProps {
+  handleTodos?: (todo: Todo[]) => void;
+  handleTodo?: (todo: Todo) => void;
+}
+export const TodosForm: FC<TodosFormProps> = ({ handleTodos, handleTodo }) => {
+  const { handleChange, formValues, handleSetFormValues } = useFormValidation(
     {
-      todo: '',
-      search: ''
+      content: '',
+      searchTerm: ''
     },
     createTodoFormValidatorSchema
   );
-  const [createUser] = useMutation(CREATE_TODO);
-  const [getToken] = useMutation(LOGIN_USER);
-  const navigate = useNavigate();
+  const [createTodo] = useMutation(CREATE_TODO);
+  // const { loading, error, data, refetch } = useQuery(FETCH_USER_TODOS);
 
   const handleCreateTodo = async () => {
     try {
       const {
         data: { createTodo: todo }
-      } = await createUser({
+      } = await createTodo({
         variables: {
           content: formValues.content
         }
       });
 
+      handleTodo?.(todo);
+      handleSetFormValues({
+        content: ''
+      });
     } catch (e) {
       console.log('e____', e);
       // setStatus(e);
     }
   };
 
-  const handleSearch = async () => {
-    try {
-      const {
-        data: { token }
-      } = await getToken({
-        variables: {
-          ...formValues
-        }
-      });
-
-      localStorage.setItem('token', token);
-      navigate('/todos', { replace: true });
-    } catch (e) {
-      // setStatus(e);
-    }
-  };
+  // const handleSearch = async () => {
+  //   try {
+  //     // const {
+  //     //   data: { todos }
+  //     // } = await fetchUserTodos({
+  //     //   variables: {
+  //     //     ...formValues
+  //     //   }
+  //     // });
+  //     // console.log('todos', todos);
+  //     await refetch({
+  //       searchTerm: formValues.searchTerm
+  //     });
+  //     handleTodos?.(data);
+  //   } catch (e) {
+  //     // setStatus(e);
+  //   }
+  // };
+  // console.log('_______', data);
 
   return (
     <StyledFormWrapper>
@@ -68,7 +78,7 @@ export const TodosForm = () => {
           type={FormTexts.CREATE_TODO_CONTENT}
           placeholder={FormTexts.CREATE_TODO_PLACEHOLDER}
           onChange={handleChange}
-          value={formValues.email}
+          value={formValues.content}
         />
       </StyledFormInputElementWrapper>
       <StyledFormInputElementWrapper>
@@ -79,13 +89,16 @@ export const TodosForm = () => {
             type={FormTexts.SEARCH}
             placeholder={FormTexts.SEARCH_PLACEHOLDER}
             onChange={handleChange}
-            value={formValues.password}
+            value={formValues.searchTerm}
           />
-          <StyledSearchButton disabled={!formValues.search ? true : false} onClick={handleSearch}>
+          <StyledSearchButton
+            disabled={!formValues.searchTerm ? true : false}
+            // onClick={handleSearch}
+          >
             {FormTexts.SEARCH_BUTTON}
           </StyledSearchButton>
           <StyledCreateTodoButton
-            disabled={!formValues['create-todo'] ? true : false}
+            disabled={!formValues.content ? true : false}
             onClick={handleCreateTodo}
           >
             {FormTexts.CREATE_TODO_BUTTON}

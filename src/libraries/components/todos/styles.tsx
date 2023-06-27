@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { devices } from '../../utils/breakpoints';
 
 export const StyledFormWrapper = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -51,17 +51,17 @@ const buttonStyles = `
   height: 48px;
   border: none;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
-`
+`;
 export const StyledCreateTodoButton = styled.button`
   ${buttonStyles}
   background: #df2060;
-  color: #F3F1F2;
+  color: #f3f1f2;
 `;
 
 export const StyledSearchButton = styled.button`
   ${buttonStyles}
   background: #F3F1F2;
-  color: #0E0C0C;
+  color: #0e0c0c;
 `;
 
 export const StyledInputErrorMessage = styled.p`
@@ -70,3 +70,22 @@ export const StyledInputErrorMessage = styled.p`
   margin-bottom: 0.25rem;
 `;
 
+export const StyledTodosCard = styled.div`
+  background: #f3f1f2;
+  border-radius: 1rem;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+`;
+export const StyledTodosWrapper = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  color: #0e0c0c;
+`;
+export const StyledEmptyTodosText = styled.p`
+  color: #86797d;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.1875rem;
+  text-align: center;
+`;

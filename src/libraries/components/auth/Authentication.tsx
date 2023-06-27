@@ -73,7 +73,9 @@ export const AuthenticationForm = () => {
   return (
     <StyledFormWrapper>
       <StyledFormInputElementWrapper>
-        {errors.email[0]?.length && <StyledInputErrorMessage>{errors.email[0]}</StyledInputErrorMessage>}
+        {errors.email[0]?.length && (
+          <StyledInputErrorMessage>{errors.email[0]}</StyledInputErrorMessage>
+        )}
         <StyledInput
           id={FormTexts.EMAIL}
           name={FormTexts.EMAIL}
@@ -84,7 +86,9 @@ export const AuthenticationForm = () => {
         />
       </StyledFormInputElementWrapper>
       <StyledFormInputElementWrapper>
-        {errors.password[0]?.length && <StyledInputErrorMessage>{errors.password[0]}</StyledInputErrorMessage>}
+        {errors.password[0]?.length && (
+          <StyledInputErrorMessage>{errors.password[0]}</StyledInputErrorMessage>
+        )}
         <StyledInput
           id={FormTexts.PASSWORD}
           name={FormTexts.PASSWORD}

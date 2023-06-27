@@ -21,7 +21,7 @@ export function useFormValidation(
   stateSchema: StateSchemaInterface,
   stateValidatorSchema: StateValidatorSchemaInterface
 ) {
-  const [formValues, setValues] = useState(stateSchema);
+  const [formValues, setFormValues] = useState(stateSchema);
   const [errors, setErrors] = useState(stateSchema);
 
   const validateFormFields = useCallback(
@@ -59,15 +59,25 @@ export function useFormValidation(
 
       const errors = validateFormFields(name, value);
 
-      setValues((prevState) => ({ ...prevState, [name]: value }));
+      setFormValues((prevState) => ({ ...prevState, [name]: value }));
       setErrors((prevState) => ({ ...prevState, [name]: errors }));
     },
     [validateFormFields]
   );
 
+  const handleSetFormValues = (formValue: StateSchemaInterface) => {
+    setFormValues((prevState) => ({ ...prevState, ...formValue }));
+  };
+
+  const handleSetErrorValues = (name: string, message: string) => {
+    setFormValues((prevState) => ({ ...prevState, [name]: [message] }));
+  };
+
   return {
     handleChange,
     formValues,
-    errors
+    errors,
+    handleSetFormValues,
+    handleSetErrorValues
   };
 }

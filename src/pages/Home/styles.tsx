@@ -10,4 +10,3 @@ export const StyledHomePageHeaderWrapper = styled.div`
   letter-spacing: 0em;
   text-align: left;
 `;
-

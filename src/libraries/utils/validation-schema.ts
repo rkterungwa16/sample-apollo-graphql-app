@@ -3,7 +3,7 @@ export enum ValidationErrorTexts {
   INVALID_EMAIL = 'Invalid email format',
   PASSWORD_EMPTY = 'Password must not be empty',
   INVALID_PASSWORD = 'Invalid password: must be greater than 8',
-  FIELD_IS_EMPTY = 'Must not be empty',
+  FIELD_IS_EMPTY = 'Must not be empty'
 }
 
 export const authenticationFormValidatorSchema = {
@@ -33,16 +33,16 @@ export const authenticationFormValidatorSchema = {
 };
 
 export const createTodoFormValidatorSchema = {
-  todo: {
+  content: {
     isEmpty: {
       func: (value: string) => !!value.length,
       error: ValidationErrorTexts.FIELD_IS_EMPTY
-    },
+    }
   },
-  search: {
+  searchTerm: {
     isEmpty: {
       func: (value: string) => !!value.length,
       error: ValidationErrorTexts.FIELD_IS_EMPTY
-    },
+    }
   }
 };
