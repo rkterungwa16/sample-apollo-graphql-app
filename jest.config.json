@@ -4,13 +4,8 @@
   "rootDir": "src",
   "testRegex": "/.*\\.test\\.tsx?$",
   "transform": {
-    "^.+\\.(t|j)s$": "ts-jest",
-    "^.+\\.(jsx|tsx)$": [
-      "babel-jest",
-      {
-        "presets": ["@babel/preset-env", ["@babel/preset-react", { "runtime": "automatic" }]]
-      }
-    ]
+    "^.+\\.(t|j)s$": "babel-jest",
+    "^.+\\.(jsx|tsx)$": "babel-jest"
   },
   "testPathIgnorePatterns": ["<rootDir>/node_modules/"],
   "transformIgnorePatterns": ["^.+\\.module\\.(css|sass|scss)$"],

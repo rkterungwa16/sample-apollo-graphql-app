@@ -11,13 +11,10 @@ import {
 import { useFormValidation } from '../../utils/useFormValidation';
 import { createTodoFormValidatorSchema } from '../../utils/validation-schema';
 import { FormTexts } from './constants';
-import { Todo } from '../../../generated/graphql';
 import { CREATE_TODO, FETCH_USER_TODOS } from '../../graphql/todos';
+import { TodosFormProps } from './types';
 
-interface TodosFormProps {
-  handleTodos?: (todo: Todo[]) => void;
-  handleTodo?: (todo: Todo) => void;
-}
+
 export const TodosForm: FC<TodosFormProps> = ({ handleTodos, handleTodo }) => {
   const { handleChange, formValues, handleSetFormValues } = useFormValidation(
     {

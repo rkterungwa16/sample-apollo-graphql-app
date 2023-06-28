@@ -9,13 +9,14 @@ import {
   StyledTodosCard,
   StyledTodosWrapper
 } from './styles';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { TodoTexts } from './constants';
 import { Todo, TodoStatus } from '../../../generated/graphql';
 import { TodoCheckbox } from './TodoCheckbox';
+import { TodosProps } from './types';
 
-export const Todos = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+export const Todos: FC<TodosProps> = ({ form }) => {
+  const [todos, setTodos] = useState<Array<Todo>>([]);
 
   const handleTodo = (todo: Todo) => {
     setTodos([...todos, todo]);
@@ -36,9 +37,17 @@ export const Todos = () => {
     };
   };
 
+  const renderForm = () => {
+    if (form) {
+      return form({
+        handleTodo
+      });
+    }
+    return <TodosForm handleTodo={handleTodo} />;
+  };
   return (
     <StyledTodosWrapper>
-      <TodosForm handleTodo={handleTodo} />
+      {renderForm()}
       <StyledTodosCard>
         {!todos.length ? (
           <StyledEmptyTodosText>{TodoTexts.EMPTY_TODOS_MESSAGE}</StyledEmptyTodosText>
