@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { StyledCheckboxWrapper, StyledCheckboxMark, StyledCheckmarkIcon } from './styles';
+import { StyledCheckboxWrapper, StyledCheckboxMark } from './styles';
 import { TodoStatus } from '../../../generated/graphql';
 
 export interface TodoCheckboxProps {
@@ -7,11 +7,9 @@ export interface TodoCheckboxProps {
 }
 export const TodoCheckbox: FC<TodoCheckboxProps> = ({ status }) => {
   return (
-    <StyledCheckboxWrapper role="input">
+    <StyledCheckboxWrapper>
       {status === TodoStatus.Done && (
-        <StyledCheckboxMark>
-          <StyledCheckmarkIcon />
-        </StyledCheckboxMark>
+        <StyledCheckboxMark data-testid="checkbox-done" />
       )}
     </StyledCheckboxWrapper>
   );

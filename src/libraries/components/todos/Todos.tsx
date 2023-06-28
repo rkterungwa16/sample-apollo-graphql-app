@@ -21,7 +21,7 @@ export const Todos = () => {
     setTodos([...todos, todo]);
   };
 
-  const handleMarkComplete = (id: string) => {
+  const handleChangeStatus = (id: string) => {
     return () => {
       const updatedTodos = todos.map((_todo) => {
         if (_todo.id === id) {
@@ -36,7 +36,6 @@ export const Todos = () => {
     };
   };
 
-  console.log('data___', todos);
   return (
     <StyledTodosWrapper>
       <TodosForm handleTodo={handleTodo} />
@@ -46,7 +45,12 @@ export const Todos = () => {
         ) : (
           <StyledTodoItemWrapper>
             {todos.map((_todo) => (
-              <StyledTodoItem role="button" onClick={handleMarkComplete(_todo.id)} key={_todo.id}>
+              <StyledTodoItem
+                data-testid={`todo-item-${_todo.id}`}
+                role="button"
+                onClick={handleChangeStatus(_todo.id)}
+                key={_todo.id}
+              >
                 <StyledTodoItemSectionWrapper>
                   <TodoCheckbox status={_todo.status} />
                   <StyledTodoItemContent>{_todo.content}</StyledTodoItemContent>
