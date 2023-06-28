@@ -91,7 +91,7 @@ export const StyledEmptyTodosText = styled.p`
 `;
 
 export const StyledCheckboxWrapper = styled.div`
-  border: 1px solid #DF2060;
+  border: 1px solid #df2060;
   color: transparent;
   transition: 0.2s;
   width: 1rem;
@@ -106,7 +106,7 @@ export const StyledCheckboxWrapper = styled.div`
 export const StyledCheckboxMark = styled.span`
   width: 1rem;
   height: 1rem;
-  background-color: #DF2060;
+  background-color: #df2060;
   border-radius: 50%;
   position: absolute;
   display: flex;
@@ -115,12 +115,13 @@ export const StyledCheckboxMark = styled.span`
 `;
 
 export const StyledCheckmarkIcon = styled.span`
-  content: "\2713";
-  :before, :after {
+  content: '\2713';
+  :before,
+  :after {
     color: white;
     font-size: 1rem;
   }
-`
+`;
 
 export const StyledTodoItem = styled.li`
   display: flex;
@@ -151,7 +152,7 @@ export const StyledTodoItemStatus = styled.span`
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.18rem;
-  color: #86797D;
+  color: #86797d;
   margin-right: 1rem;
   cursor: pointer;
-`
+`;

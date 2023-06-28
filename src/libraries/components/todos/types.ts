@@ -1,5 +1,5 @@
-import { ReactElement } from "react";
-import { Todo } from "../../../generated/graphql";
+import { ReactElement } from 'react';
+import { Todo } from '../../../generated/graphql';
 
 export interface TodosFormProps {
   handleTodos?: (todo: Todo[]) => void;

@@ -3,7 +3,7 @@
  */
 
 import '@testing-library/jest-dom/extend-expect';
-import React, { useState as useStateMock } from 'react'
+import React, { useState as useStateMock } from 'react';
 import { render } from '@testing-library/react';
 import { Todos } from './Todos';
 import { TodoStatus } from '../../../generated/graphql';

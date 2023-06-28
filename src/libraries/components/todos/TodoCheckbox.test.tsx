@@ -13,20 +13,16 @@ describe('TodoCheckbox', () => {
   });
 
   it('renders done check mark', () => {
-    const { getByTestId } = render(
-      <TodoCheckbox status={TodoStatus.Done} />
-    );
+    const { getByTestId } = render(<TodoCheckbox status={TodoStatus.Done} />);
     const checkmarkDone = getByTestId('checkbox-done');
-    expect(checkmarkDone).toBeInTheDocument()
+    expect(checkmarkDone).toBeInTheDocument();
   });
 
   it('renders check mark as not done', () => {
-    const { getByTestId } = render(
-      <TodoCheckbox status={TodoStatus.Todo} />
-    );
+    const { getByTestId } = render(<TodoCheckbox status={TodoStatus.Todo} />);
     const findCheckmark = () => {
       getByTestId('checkbox-done');
-    }
+    };
     expect(findCheckmark).toThrowError();
   });
 });

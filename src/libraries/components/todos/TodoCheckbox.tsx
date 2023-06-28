@@ -8,9 +8,7 @@ export interface TodoCheckboxProps {
 export const TodoCheckbox: FC<TodoCheckboxProps> = ({ status }) => {
   return (
     <StyledCheckboxWrapper>
-      {status === TodoStatus.Done && (
-        <StyledCheckboxMark data-testid="checkbox-done" />
-      )}
+      {status === TodoStatus.Done && <StyledCheckboxMark data-testid="checkbox-done" />}
     </StyledCheckboxWrapper>
   );
 };
