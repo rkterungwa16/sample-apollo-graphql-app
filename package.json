@@ -11,7 +11,6 @@
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"src/**/*.tsx\" \"test/**/*.tsx\"",
     "codegen": "graphql-codegen --config codegen.ts",
-    "commit": "cz"
   },
   "dependencies": {
     "@apollo/client": "^3.7.15",
