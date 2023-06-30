@@ -39,8 +39,8 @@ describe('Todos', () => {
     const createTodoButton = getByRole('button', { name: FormTexts.CREATE_TODO_BUTTON });
     fireEvent.click(createTodoButton);
     const todoItemContent = getByText(sampleTodos[0].content);
-    const todoItemDoneButton = getByRole('button', { name: TodoTexts.TODO_DONE });
+    const todoItemDoneText = getByText(TodoTexts.TODO_DONE);
     expect(todoItemContent).toBeInTheDocument();
-    expect(todoItemDoneButton).toBeInTheDocument();
+    expect(todoItemDoneText).toBeInTheDocument();
   });
 });

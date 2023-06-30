@@ -77,7 +77,7 @@ export const Todos: FC<TodosProps> = ({ form }) => {
                       </StyledTodoItemStatus>
                     </>
                   ) : (
-                    <StyledTodoItemStatus role="button">{TodoTexts.TODO_DONE}</StyledTodoItemStatus>
+                    <StyledTodoItemStatus>{TodoTexts.TODO_DONE}</StyledTodoItemStatus>
                   )}
                 </StyledTodoItemSectionWrapper>
               </StyledTodoItem>
