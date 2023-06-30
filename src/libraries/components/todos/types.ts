@@ -7,5 +7,5 @@ export interface TodosFormProps {
 }
 
 export interface TodosProps {
-  form?: (props: TodosFormProps) => ReactElement;
+  form?: (props: TodosFormProps) => ReactElement | ReactElement<TodosFormProps>;
 }

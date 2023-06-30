@@ -16,6 +16,7 @@ import { TodoCheckbox } from './TodoCheckbox';
 import { TodosProps } from './types';
 
 export const Todos: FC<TodosProps> = ({ form }) => {
+
   const [todos, setTodos] = useState<Array<Todo>>([]);
 
   const handleTodo = (todo: Todo) => {
@@ -38,13 +39,17 @@ export const Todos: FC<TodosProps> = ({ form }) => {
   };
 
   const renderForm = () => {
+
     if (form) {
+
       return form({
         handleTodo
       });
     }
+
     return <TodosForm handleTodo={handleTodo} />;
   };
+
   return (
     <StyledTodosWrapper>
       {renderForm()}

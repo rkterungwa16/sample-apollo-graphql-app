@@ -20,7 +20,7 @@ export const schema = gql`
     status: TodoStatus!
     createdAt: String!
     updatedAt: String!
-    user: User!
+    user: User
   }
 
   type Query {
