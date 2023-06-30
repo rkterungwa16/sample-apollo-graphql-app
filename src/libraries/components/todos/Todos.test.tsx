@@ -28,7 +28,7 @@ describe('Todos', () => {
   });
 
   it('renders a list with todo item', () => {
-    const { getByRole, getByText } = render(
+    const { getByRole, getByText, getByTestId } = render(
       <Todos
         form={(props: TodosFormProps) => {
           return <TestTodoForm handleTodo={props.handleTodo} />;
@@ -42,5 +42,11 @@ describe('Todos', () => {
     const todoItemDoneText = getByText(TodoTexts.TODO_DONE);
     expect(todoItemContent).toBeInTheDocument();
     expect(todoItemDoneText).toBeInTheDocument();
+    const changeItemStatusButton = getByTestId('todo-item-1');
+    fireEvent.click(changeItemStatusButton);
+    const todoItemRemoveButton = getByRole('button', { name: TodoTexts.TODO_REMOVE });
+    const todoItemEditButton = getByRole('button', { name: TodoTexts.TODO_EDIT });
+    expect(todoItemRemoveButton).toBeInTheDocument();
+    expect(todoItemEditButton).toBeInTheDocument();
   });
 });
