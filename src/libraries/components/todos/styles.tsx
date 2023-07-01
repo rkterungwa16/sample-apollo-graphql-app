@@ -103,6 +103,18 @@ export const StyledCheckboxWrapper = styled.div`
   justify-content: center;
 `;
 
+export const StyledCheckbox = styled.span`
+  color: transparent;
+  transition: 0.2s;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const StyledCheckboxMark = styled.span`
   width: 1rem;
   height: 1rem;

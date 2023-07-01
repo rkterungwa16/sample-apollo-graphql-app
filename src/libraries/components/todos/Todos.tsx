@@ -56,14 +56,13 @@ export const Todos: FC<TodosProps> = ({ form }) => {
         ) : (
           <StyledTodoItemWrapper>
             {todos.map((_todo) => (
-              <StyledTodoItem
-                data-testid={`todo-item-${_todo.id}`}
-                role="button"
-                onClick={handleChangeStatus(_todo.id)}
-                key={_todo.id}
-              >
+              <StyledTodoItem key={_todo.id}>
                 <StyledTodoItemSectionWrapper>
-                  <TodoCheckbox status={_todo.status} />
+                  <TodoCheckbox
+                    id={_todo.id}
+                    handleClick={handleChangeStatus(_todo.id)}
+                    status={_todo.status}
+                  />
                   <StyledTodoItemContent>{_todo.content}</StyledTodoItemContent>
                 </StyledTodoItemSectionWrapper>
                 <StyledTodoItemSectionWrapper>
