@@ -6,7 +6,7 @@ import { FormTexts } from './constants';
 export const TestTodoForm: FC<TodosFormProps> = ({ handleTodo }) => {
   const handleClick = () => {
     const todo = sampleTodos[0];
-    handleTodo?.(todo);
+    handleTodo?.(todo, 'create');
   };
   return <button onClick={handleClick}>{FormTexts.CREATE_TODO_BUTTON}</button>;
 };

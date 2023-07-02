@@ -52,13 +52,13 @@ const buttonStyles = `
   border: none;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 `;
-export const StyledCreateTodoButton = styled.button`
+export const StyledPrimaryButton = styled.button`
   ${buttonStyles}
   background: #df2060;
   color: #f3f1f2;
 `;
 
-export const StyledSearchButton = styled.button`
+export const StyledSecondaryButton = styled.button`
   ${buttonStyles}
   background: #F3F1F2;
   color: #0e0c0c;

@@ -5,8 +5,8 @@ import {
   StyledFormWrapper,
   StyledFormInputElementWrapper,
   StyledInput,
-  StyledSearchButton,
-  StyledCreateTodoButton
+  StyledSecondaryButton,
+  StyledPrimaryButton
 } from './styles';
 import { useFormValidation } from '../../utils/useFormValidation';
 import { createTodoFormValidatorSchema } from '../../utils/validation-schema';
@@ -35,7 +35,7 @@ export const TodosForm: FC<TodosFormProps> = ({ handleTodos, handleTodo }) => {
         }
       });
 
-      handleTodo?.(todo);
+      handleTodo?.(todo, 'create');
       handleSetFormValues({
         content: ''
       });
@@ -87,18 +87,18 @@ export const TodosForm: FC<TodosFormProps> = ({ handleTodos, handleTodo }) => {
             onChange={handleChange}
             value={formValues.searchTerm}
           />
-          <StyledSearchButton
+          <StyledSecondaryButton
             disabled={!formValues.searchTerm ? true : false}
             // onClick={handleSearch}
           >
             {FormTexts.SEARCH_BUTTON}
-          </StyledSearchButton>
-          <StyledCreateTodoButton
+          </StyledSecondaryButton>
+          <StyledPrimaryButton
             disabled={!formValues.content ? true : false}
             onClick={handleCreateTodo}
           >
             {FormTexts.CREATE_TODO_BUTTON}
-          </StyledCreateTodoButton>
+          </StyledPrimaryButton>
         </StyledFormButtonElementsWrapper>
       </StyledFormInputElementWrapper>
     </StyledFormWrapper>

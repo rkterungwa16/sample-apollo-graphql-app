@@ -3,7 +3,7 @@ import { Todo } from '../../../generated/graphql';
 
 export interface TodosFormProps {
   handleTodos?: (todo: Todo[]) => void;
-  handleTodo?: (todo: Todo) => void;
+  handleTodo?: (todo: Todo, type: 'create' | 'update' | 'delete') => void;
 }
 
 export interface TodosProps {

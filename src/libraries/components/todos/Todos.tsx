@@ -1,40 +1,36 @@
 import { TodosForm } from './TodosForm';
 import {
   StyledEmptyTodosText,
-  StyledTodoItem,
-  StyledTodoItemContent,
-  StyledTodoItemSectionWrapper,
-  StyledTodoItemStatus,
   StyledTodoItemWrapper,
   StyledTodosCard,
   StyledTodosWrapper
 } from './styles';
 import { FC, useState } from 'react';
 import { TodoTexts } from './constants';
-import { Todo, TodoStatus } from '../../../generated/graphql';
-import { TodoCheckbox } from './TodoCheckbox';
+import { Todo } from '../../../generated/graphql';
 import { TodosProps } from './types';
+import { TodoItem } from './TodoItem';
 
 export const Todos: FC<TodosProps> = ({ form }) => {
   const [todos, setTodos] = useState<Array<Todo>>([]);
 
-  const handleTodo = (todo: Todo) => {
-    setTodos([...todos, todo]);
-  };
-
-  const handleChangeStatus = (id: string) => {
-    return () => {
+  const handleTodo = (todo: Todo, type: 'create' | 'update' | 'delete') => {
+    if (type === 'create') {
+      setTodos([...todos, todo]);
+    } else if (type === 'update') {
       const updatedTodos = todos.map((_todo) => {
-        if (_todo.id === id) {
+        if (_todo.id === todo.id) {
           return {
-            ..._todo,
-            status: _todo.status === TodoStatus.Todo ? TodoStatus.Done : TodoStatus.Todo
+            ...todo
           };
         }
         return _todo;
       });
       setTodos(updatedTodos);
-    };
+    } else if (type === 'delete') {
+      const updatedTodosAfterDelete = todos.filter((_todo) => _todo.id !== todo.id);
+      setTodos(updatedTodosAfterDelete);
+    }
   };
 
   const renderForm = () => {
@@ -56,30 +52,7 @@ export const Todos: FC<TodosProps> = ({ form }) => {
         ) : (
           <StyledTodoItemWrapper>
             {todos.map((_todo) => (
-              <StyledTodoItem key={_todo.id}>
-                <StyledTodoItemSectionWrapper>
-                  <TodoCheckbox
-                    id={_todo.id}
-                    handleClick={handleChangeStatus(_todo.id)}
-                    status={_todo.status}
-                  />
-                  <StyledTodoItemContent>{_todo.content}</StyledTodoItemContent>
-                </StyledTodoItemSectionWrapper>
-                <StyledTodoItemSectionWrapper>
-                  {_todo.status === TodoStatus.Done ? (
-                    <>
-                      <StyledTodoItemStatus role="button">
-                        {TodoTexts.TODO_EDIT}
-                      </StyledTodoItemStatus>
-                      <StyledTodoItemStatus role="button">
-                        {TodoTexts.TODO_REMOVE}
-                      </StyledTodoItemStatus>
-                    </>
-                  ) : (
-                    <StyledTodoItemStatus>{TodoTexts.TODO_DONE}</StyledTodoItemStatus>
-                  )}
-                </StyledTodoItemSectionWrapper>
-              </StyledTodoItem>
+              <TodoItem key={_todo.id} todo={_todo} handleTodo={handleTodo} />
             ))}
           </StyledTodoItemWrapper>
         )}
