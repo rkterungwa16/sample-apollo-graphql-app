@@ -1,13 +1,6 @@
 {
-  "moduleFileExtensions": ["js", "json", "ts", "tsx"],
-  "resetMocks": true,
-  "rootDir": "src",
-  "testRegex": "/.*\\.test\\.tsx?$",
   "transform": {
     "^.+\\.(jsx|tsx|ts|js)$": "babel-jest"
   },
-  "testPathIgnorePatterns": ["<rootDir>/node_modules/"],
-  "transformIgnorePatterns": ["^.+\\.module\\.(css|sass|scss)$"],
-  "coverageDirectory": "../coverage",
-  "testEnvironment": "jsdom"
+  "coverageDirectory": "../coverage"
 }

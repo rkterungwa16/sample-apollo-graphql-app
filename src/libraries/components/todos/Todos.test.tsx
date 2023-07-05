@@ -9,6 +9,36 @@ import { TestTodoForm } from './Test.Components';
 import { TodosFormProps } from './types';
 import { FormTexts, TodoTexts } from './constants';
 import { sampleTodos } from './test.utils';
+import { DELETE_TODO, UPDATE_TODO } from '../../graphql/todos';
+import { MockedProvider } from '@apollo/client/testing';
+
+const mocks = [
+  {
+    request: {
+      query: UPDATE_TODO,
+      variables: {
+        todo: {
+          id: '1',
+          status: 'DONE'
+        }
+      }
+    },
+    result: {
+      data: {}
+    }
+  },
+  {
+    request: {
+      query: DELETE_TODO,
+      variables: {
+        id: '1'
+      }
+    },
+    result: {
+      data: {}
+    }
+  }
+];
 
 describe('Todos', () => {
   it('exists', () => {
@@ -29,11 +59,13 @@ describe('Todos', () => {
 
   it('renders a list with todo item', () => {
     const { getByRole, getByText, getByTestId } = render(
-      <Todos
-        form={(props: TodosFormProps) => {
-          return <TestTodoForm handleTodo={props.handleTodo} />;
-        }}
-      />
+      <MockedProvider mocks={mocks}>
+        <Todos
+          form={(props: TodosFormProps) => {
+            return <TestTodoForm handleTodo={props.handleTodo} />;
+          }}
+        />
+      </MockedProvider>
     );
 
     const createTodoButton = getByRole('button', { name: FormTexts.CREATE_TODO_BUTTON });

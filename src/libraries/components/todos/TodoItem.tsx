@@ -24,10 +24,6 @@ export const TodoItem: FC<TodoItemProps> = ({ handleTodo, todo }) => {
   const [deleteTodo] = useMutation(DELETE_TODO);
 
   const handleUpdateTodo = async (prop: 'status' | 'content', value: string) => {
-    console.log('prop', prop);
-    console.log('value', value);
-    console.log('id', id);
-
     try {
       const {
         data: { updateTodo: updatedTodo }
