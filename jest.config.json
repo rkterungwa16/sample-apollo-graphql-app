@@ -4,8 +4,7 @@
   "rootDir": "src",
   "testRegex": "/.*\\.test\\.tsx?$",
   "transform": {
-    "^.+\\.(t|j)s$": "babel-jest",
-    "^.+\\.(jsx|tsx)$": "babel-jest"
+    "^.+\\.(jsx|tsx|ts|js)$": "babel-jest"
   },
   "testPathIgnorePatterns": ["<rootDir>/node_modules/"],
   "transformIgnorePatterns": ["^.+\\.module\\.(css|sass|scss)$"],
