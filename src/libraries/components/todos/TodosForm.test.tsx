@@ -10,7 +10,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { FormTexts } from './constants';
 import { CREATE_TODO, FETCH_USER_TODOS } from '../../graphql/todos';
 
-const mutationFn = jest.fn().mockImplementation((values) => {
+const mutationFn = jest.fn().mockImplementation(() => {
   return {
     data: {
       userTodos: [

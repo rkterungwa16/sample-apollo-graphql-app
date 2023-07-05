@@ -4,7 +4,6 @@
 
 import '@testing-library/jest-dom/extend-expect';
 import { fireEvent, render } from '@testing-library/react';
-import * as client from '@apollo/client';
 import { AuthenticationForm } from './Authentication';
 import { MockedProvider } from '@apollo/client/testing';
 import { MemoryRouter } from 'react-router-dom';

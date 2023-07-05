@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import {
   StyledFormButtonElementsWrapper,
   StyledFormWrapper,
@@ -11,10 +11,10 @@ import {
 import { useFormValidation } from '../../utils/useFormValidation';
 import { createTodoFormValidatorSchema } from '../../utils/validation-schema';
 import { FormTexts } from './constants';
-import { CREATE_TODO, FETCH_USER_TODOS } from '../../graphql/todos';
+import { CREATE_TODO } from '../../graphql/todos';
 import { TodosFormProps } from './types';
 
-export const TodosForm: FC<TodosFormProps> = ({ handleTodos, handleTodo }) => {
+export const TodosForm: FC<TodosFormProps> = ({ handleTodo }) => {
   const { handleChange, formValues, handleSetFormValues } = useFormValidation(
     {
       content: '',

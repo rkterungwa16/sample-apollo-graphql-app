@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Todo, TodoStatus } from '../../../generated/graphql';
+import { Todo } from '../../../generated/graphql';
 import { TodoCheckbox } from './TodoCheckbox';
 import { TodoTexts } from './constants';
 import {

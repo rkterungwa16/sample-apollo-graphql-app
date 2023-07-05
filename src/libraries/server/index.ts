@@ -22,13 +22,16 @@ export const server = createServer({
       root: undefined,
       resolvers: {
         Query: {
-          async userTodos(obj: any, args: any, context: any, info: any) {
+          async userTodos(...props: any[]) {
+            const context = props[2];
             const user = await getCurrentUser(context);
             return user.todos.models;
           }
         },
         Mutation: {
-          createUser(obj: any, args: any, context: any, info: any) {
+          createUser(...props: any[]) {
+            const args = props[1];
+            const context = props[2];
             const { email, password } = args;
             const oldUser = context.mirageSchema.users.findBy({ email });
             if (oldUser) {
@@ -44,7 +47,9 @@ export const server = createServer({
             return user;
           },
 
-          async createTodo(obj: any, args: any, context: any, info: any) {
+          async createTodo(...props: any[]) {
+            const args = props[1];
+            const context = props[2];
             const { content } = args;
             const user = await getCurrentUser(context);
             const now = dayjs().toISOString();
@@ -58,7 +63,9 @@ export const server = createServer({
             return todo;
           },
 
-          async updateTodo(obj: any, args: any, context: any, info: any) {
+          async updateTodo(...props: any[]) {
+            const args = props[1];
+            const context = props[2];
             const {
               todo: { id, content, status }
             } = args;
@@ -71,7 +78,9 @@ export const server = createServer({
             return todo;
           },
 
-          async deleteTodo(obj: any, args: any, context: any, info: any) {
+          async deleteTodo(...props: any[]) {
+            const args = props[1];
+            const context = props[2];
             const { id } = args;
             const user = await getCurrentUser(context);
             const todo = user.todos.models.find((t: any) => t.id === id);
@@ -80,7 +89,9 @@ export const server = createServer({
             return true;
           },
 
-          async token(obj: any, args: any, context: any, info: any) {
+          async token(...props: any[]) {
+            const args = props[1];
+            const context = props[2];
             const { email, password } = args;
             const user = context.mirageSchema.users.findBy({ email });
             if (!user) throw new GraphQLError('user does not exist or wrong password');
