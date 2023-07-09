@@ -71,7 +71,7 @@ export default defineConfig({
   // "timeout": 5000
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run build && npm run preview',
+    command: 'pnpm run build && npm run preview',
     url: 'http://localhost:4173/',
     // reuseExistingServer: !process.env.CI,
   },
