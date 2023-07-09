@@ -7,7 +7,7 @@
     "dev": "vite",
     "test": "jest",
     "start": "npm run build && npm run preview",
-    "build": "tsc && npx vite build",
+    "build": "npx tsc && npx vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "npx vite preview",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"src/**/*.tsx\" \"test/**/*.tsx\"",
