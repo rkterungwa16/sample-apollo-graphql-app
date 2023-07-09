@@ -1,11 +1,11 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { FormTexts } from '../libraries/components/auth/constants';
-import { TodoTexts, FormTexts as TodoFormTexts } from '../libraries/components/todos/constants';
+import { FormTexts as TodoFormTexts } from '../libraries/components/todos/constants';
 
 const TODO_ITEMS = ['buy some cheese', 'feed the cat', 'book a doctors appointment'];
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('http://localhost:5173/');
+  await page.goto('http://localhost:4173/');
 });
 test('has title', async ({ page }) => {
   // Expect a title "to contain" a substring.
@@ -41,7 +41,7 @@ test.describe('Todos', () => {
     await loginBtn.click();
   });
   test('Should create todo', async ({ page }) => {
-    await page.waitForURL('http://localhost:5173/todos');
+    await page.waitForURL('http://localhost:4173/todos');
     const todoInput = page.getByPlaceholder(TodoFormTexts.CREATE_TODO_PLACEHOLDER);
     const todoBtn = page.getByRole('button', { name: TodoFormTexts.CREATE_TODO_BUTTON });
     await todoInput.fill(TODO_ITEMS[0]);
