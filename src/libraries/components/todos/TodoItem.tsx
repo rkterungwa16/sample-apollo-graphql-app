@@ -36,7 +36,10 @@ export const TodoItem: FC<TodoItemProps> = ({ handleTodo, todo }) => {
         }
       });
 
-      handleTodo?.(updatedTodo, 'update');
+      if (updatedTodo) {
+        handleTodo?.(updatedTodo, 'update');
+        setIsEditing(false);
+      }
     } catch (e) {
       console.log('e____', e);
       // setStatus(e);
