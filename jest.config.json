@@ -2,5 +2,6 @@
   "transform": {
     "^.+\\.(jsx|tsx|ts|js)$": "babel-jest"
   },
-  "coverageDirectory": "../coverage"
+  "coverageDirectory": "../coverage",
+  "testEnvironment": "jsdom"
 }
