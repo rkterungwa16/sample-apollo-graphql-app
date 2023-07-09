@@ -151,13 +151,20 @@ export const StyledTodoItemSectionWrapper = styled.div`
 export const StyledTodoItemWrapper = styled.ul`
   width: 100%;
 `;
-export const StyledTodoItemContent = styled.span`
+export const StyledTodoItemContent = styled.span<{ isDone?: boolean }>`
   margin-left: 1rem;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.18rem;
   text-align: left;
   color: #0e0c0c;
+  ${(props) => {
+    if (props.isDone) {
+      return {
+        textDecoration: 'line-through'
+      };
+    }
+  }}
 `;
 
 export const StyledTodoItemStatus = styled.span`

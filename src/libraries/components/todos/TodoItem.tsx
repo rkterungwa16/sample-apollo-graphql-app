@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Todo } from '../../../generated/graphql';
+import { Todo, TodoStatus } from '../../../generated/graphql';
 import { TodoCheckbox } from './TodoCheckbox';
 import { TodoTexts } from './constants';
 import {
@@ -75,7 +75,9 @@ export const TodoItem: FC<TodoItemProps> = ({ handleTodo, todo }) => {
         <>
           <StyledTodoItemSectionWrapper>
             <TodoCheckbox id={id} handleUpdate={handleUpdateTodo} status={status} />
-            <StyledTodoItemContent>{content}</StyledTodoItemContent>
+            <StyledTodoItemContent isDone={status === TodoStatus.Done}>
+              {content}
+            </StyledTodoItemContent>
           </StyledTodoItemSectionWrapper>
           <StyledTodoItemSectionWrapper>
             <StyledTodoItemStatus onClick={handleTodoEditClick} role="button">
@@ -84,7 +86,9 @@ export const TodoItem: FC<TodoItemProps> = ({ handleTodo, todo }) => {
             <StyledTodoItemStatus onClick={handleDeleteTodo} role="button">
               {TodoTexts.TODO_REMOVE}
             </StyledTodoItemStatus>
-            <StyledTodoItemStatus>{TodoTexts.TODO_DONE}</StyledTodoItemStatus>
+            {status === TodoStatus.Done && (
+              <StyledTodoItemStatus>{TodoTexts.TODO_DONE}</StyledTodoItemStatus>
+            )}
           </StyledTodoItemSectionWrapper>
         </>
       )}
